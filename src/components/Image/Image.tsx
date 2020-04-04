@@ -7,12 +7,12 @@ type ImageProps = {
   url: string
 }
 
-function Image({ small, url }: ImageProps) {
+function Image({ small, url }: ImageProps): JSX.Element {
   return (
     <li className={`image ${small ? 'small' : ''}`}>
-      <img alt="" className="picture" src={url} />
+      <img alt="image" className="picture" src={url} />
       <div className="meta">
-        <img alt="" className="avatar" src="#" />
+        <img alt="avatar" className="avatar" src="#" />
         <div className="text">
           <div>name</div>
           <div>post</div>
