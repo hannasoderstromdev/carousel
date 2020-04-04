@@ -1,34 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Image from './components/Image'
 import Button from './components/Button'
+import Dots from './components/Dots'
 
 import './App.css'
 
 function App(): JSX.Element {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [images, setImages] = useState([
-    'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
-    'https://images.unsplash.com/photo-1470341223622-1019832be824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2288&q=80',
-    'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2094&q=80',
-    'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80',
-  ])
+  const [images, setImages] = useState([])
   const [translate, setTranslate] = useState(0)
 
-  function goLeft(): void {
-    const shouldResetIndex = currentImageIndex === 0
-    const lastIndex = images.length - 1
+  useEffect(() => {
+    setImages([
+      'https://i.picsum.photos/id/1025/200/200.jpg',
+      'https://i.picsum.photos/id/237/200/200.jpg',
+      'https://i.picsum.photos/id/1043/200/200.jpg',
+      'https://i.picsum.photos/id/1040/200/200.jpg',
+      'https://i.picsum.photos/id/1062/200/200.jpg',
+      'https://i.picsum.photos/id/156/200/200.jpg',
+      'https://i.picsum.photos/id/169/200/200.jpg',
+      'https://i.picsum.photos/id/168/200/200.jpg',
+    ])
+  }, [])
 
-    if (shouldResetIndex) {
-      setCurrentImageIndex(lastIndex)
-      setTranslate(lastIndex)
-    } else {
-      setCurrentImageIndex(state => state - 1)
-      setTranslate((currentImageIndex - 1) * 200)
-    }
-  }
-
-  function goRight(): void {
+  function next(): void {
     const shouldResetIndex = currentImageIndex === images.length - 1
     const firstIndex = 0
 
@@ -37,13 +33,25 @@ function App(): JSX.Element {
       setTranslate(firstIndex)
     } else {
       setCurrentImageIndex(state => state + 1)
-      setTranslate((currentImageIndex + 1) * 200)
+      setTranslate(-(currentImageIndex + 1) * 220)
+    }
+  }
+
+  function previous(): void {
+    const shouldResetIndex = currentImageIndex === 0
+
+    if (shouldResetIndex) {
+      setCurrentImageIndex(0)
+      setTranslate(0)
+    } else {
+      setCurrentImageIndex(state => state - 1)
+      setTranslate(-(currentImageIndex - 1) * 220)
     }
   }
 
   return (
     <div className="app">
-      <Button left onClick={goLeft} />
+      <Button left onClick={previous} />
       <div className="carousel-wrapper">
         <ul
           className="carousel-content"
@@ -55,8 +63,9 @@ function App(): JSX.Element {
             <Image key={index + 1} url={url} />
           ))}
         </ul>
+        <Dots currentImageIndex={currentImageIndex} images={images} />
       </div>
-      <Button onClick={goRight} />
+      <Button onClick={next} />
     </div>
   )
 }
