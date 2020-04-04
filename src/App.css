@@ -7,7 +7,7 @@
 .carousel-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   max-width: 70vw;
   height: 75vh;
   overflow: hidden;
@@ -18,12 +18,10 @@
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  justify-content: start;
   transition: transform ease-out 0.45s,
 }
 
 .carousel-content li {
-  margin: 0 1%;
+  margin: 0 10px;
 }
