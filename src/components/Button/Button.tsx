@@ -2,15 +2,22 @@ import React from 'react'
 
 import './button.css'
 
-type ButtonProps = {
-  onClick?: any;
-  left?: boolean;
+enum ButtonType {
+  left = 'left',
+  right = 'right',
+  pause = 'pause',
+  play = 'play',
 }
 
-function Button({ onClick, left }: ButtonProps): JSX.Element {
+type ButtonProps = {
+  onClick?: any;
+  type: keyof typeof ButtonType;
+}
+
+function Button({ onClick, type }: ButtonProps): JSX.Element {
   return (
     <button className="button" onClick={onClick}>
-      <span className={left ? 'left' : 'right'}></span>
+      <span className={type}></span>
     </button>
   )
 }

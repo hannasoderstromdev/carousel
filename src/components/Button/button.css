@@ -23,6 +23,22 @@
   width: 0;
   height: 0;
   border-style: solid;
-border-width: 20px 0 20px 25px;
-border-color: transparent transparent transparent #c4c4c4;
+  border-width: 20px 0 20px 25px;
+  border-color: transparent transparent transparent #c4c4c4;
+}
+
+.button span.pause {
+  display: block;
+  background-color: #c4c4c4;
+  width: 40px;
+  height: 40px;
+}
+
+.button span.play {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 0 20px 25px;
+  border-color: transparent transparent transparent #c4c4c4;
 }
