@@ -1,7 +1,9 @@
 import React from 'react'
 
+import './dots.css'
+
 type DotProps = {
-  active?: boolean;
+  active?: boolean
 }
 
 function Dot({ active }: DotProps): JSX.Element {
@@ -12,20 +14,20 @@ function Dot({ active }: DotProps): JSX.Element {
         marginRight: '5px',
         cursor: 'pointer',
         borderRadius: '50%',
-        backgroundColor: `${active ? 'black' : 'grey'}`,
+        backgroundColor: `${active ? '#7C7C7C' : '#c4c4c4'}`,
       }}
     ></span>
   )
 }
 
 type DotsProps = {
-  images: string[];
-  currentImageIndex: number;
+  images: string[]
+  currentImageIndex: number
 }
 
 function Dots({ images, currentImageIndex }: DotsProps): JSX.Element {
   return (
-    <div>
+    <div className="dots">
       {images.map((url, i) => (
         <Dot active={currentImageIndex === i} key={url} />
       ))}
