@@ -12,10 +12,10 @@ function Image({ small, url }: ImageProps): JSX.Element {
     <li className={`image ${small ? 'small' : ''}`}>
       <img alt="image" className="picture" src={url} />
       <div className="meta">
-        <img alt="avatar" className="avatar" src="#" />
+        <img alt="" className="avatar" src="#" />
         <div className="text">
-          <div>name</div>
-          <div>post</div>
+          <div></div>
+          <div></div>
         </div>
       </div>
     </li>
