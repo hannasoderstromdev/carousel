@@ -14,7 +14,14 @@ function App() {
     'https://i.picsum.photos/id/168/200/200.jpg',
   ]
 
-  return <Carousel autoPlayOn images={images} />
+  return (
+    <Carousel
+      autoPlayOn
+      autoPlaySpeedInMs={2000}
+      images={images}
+      speedInMs={300}
+    />
+  )
 }
 
 export default App

@@ -26,14 +26,20 @@ export function generateVisibleImages({ currentImageIndex, images }): string[] {
 }
 
 type CarouselProps = {
-  autoPlayOn?: boolean;
-  images: string[];
+  autoPlayOn?: boolean
+  autoPlaySpeedInMs?: number
+  images: string[]
+  speedInMs?: number
 }
 
-function Carousel({ autoPlayOn = false, images }: CarouselProps): JSX.Element {
+function Carousel({
+  autoPlayOn = false,
+  autoPlaySpeedInMs = 2000,
+  images = [],
+  speedInMs = 450,
+}: CarouselProps): JSX.Element {
   const [autoPlay, setAutoPlay] = useState(autoPlayOn)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [transition, setTransition] = useState(0.45)
 
   const next = (): void => {
     setCurrentImageIndex(state => (state === images.length - 1 ? 0 : state + 1))
@@ -59,7 +65,7 @@ function Carousel({ autoPlayOn = false, images }: CarouselProps): JSX.Element {
     if (autoPlay) {
       interval = setInterval(() => {
         play()
-      }, 2000)
+      }, autoPlaySpeedInMs)
     } else {
       clearInterval(interval)
     }
@@ -68,10 +74,6 @@ function Carousel({ autoPlayOn = false, images }: CarouselProps): JSX.Element {
       clearInterval(interval)
     }
   }, [autoPlay])
-
-  useEffect(() => {
-    if (transition === 0) setTransition(0.45)
-  }, [transition])
 
   const toggleAutoPlay = (): void => {
     setAutoPlay(state => !state)
@@ -86,7 +88,7 @@ function Carousel({ autoPlayOn = false, images }: CarouselProps): JSX.Element {
             transform: `translateX(-${
               (currentImageIndex * 100) / images.length
             }%)`,
-            transition: `transform ease-out ${transition}s`,
+            transition: `transform cubic-bezier(0.455, 0.03, 0.515, 0.955) ${speedInMs}ms`,
           }}
         >
           {images.map((url, index) => (
