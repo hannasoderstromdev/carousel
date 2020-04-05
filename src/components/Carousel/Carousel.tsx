@@ -34,45 +34,24 @@ function Carousel({ autoPlayOn = false, images }: CarouselProps): JSX.Element {
   const [autoPlay, setAutoPlay] = useState(autoPlayOn)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [transition, setTransition] = useState(0.45)
-  const [translate, setTranslate] = useState(0)
-  const [useImages, setUseImages] = useState([
-    images[0],
-    images[2],
-    images[images.length - 1],
-  ])
 
   const next = (): void => {
-    setTranslate(state => state + 220)
     setCurrentImageIndex(state => (state === images.length - 1 ? 0 : state + 1))
   }
 
   const previous = (): void => {
-    setTranslate(0)
     setCurrentImageIndex(state => (state === 0 ? images.length - 1 : state - 1))
   }
 
-  const smoothTransition = (): void => {
-    const newUseImages = generateVisibleImages({ currentImageIndex, images })
-
-    setTranslate(state => state + 220)
-    setTransition(0)
-    setUseImages(newUseImages)
-  }
-
   const autoPlayRef = useRef(next)
-  const transitionRef = useRef(smoothTransition)
 
   useEffect(() => {
     autoPlayRef.current = next
-    transitionRef.current = smoothTransition
   })
 
   useEffect(() => {
     function play(): void {
       autoPlayRef.current()
-    }
-    function smooth(): void {
-      transitionRef.current()
     }
 
     let interval
@@ -80,7 +59,6 @@ function Carousel({ autoPlayOn = false, images }: CarouselProps): JSX.Element {
     if (autoPlay) {
       interval = setInterval(() => {
         play()
-        setTimeout(() => smooth(), 450)
       }, 2000)
     } else {
       clearInterval(interval)
@@ -105,11 +83,13 @@ function Carousel({ autoPlayOn = false, images }: CarouselProps): JSX.Element {
         <ul
           className="carousel-content"
           style={{
-            transform: `translateX(${translate}px)`,
+            transform: `translateX(-${
+              (currentImageIndex * 100) / images.length
+            }%)`,
             transition: `transform ease-out ${transition}s`,
           }}
         >
-          {useImages.map((url, index) => (
+          {images.map((url, index) => (
             <Image key={index + 1} url={url} />
           ))}
         </ul>
