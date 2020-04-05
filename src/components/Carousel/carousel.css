@@ -1,0 +1,34 @@
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 70vw;
+  height: 75vh;
+  overflow: hidden;
+}
+
+.carousel-content {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  width: 220px;
+  height: 100%;
+}
+
+.carousel-content li {
+  margin: 0 10px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
