@@ -3,13 +3,17 @@ import React from 'react'
 import './image.css'
 
 type ImageProps = {
+  isActive: boolean
   small?: boolean
   url: string
 }
 
-function Image({ small, url }: ImageProps): JSX.Element {
+function Image({ isActive, small, url }: ImageProps): JSX.Element {
+  const classNames = ['image', small && 'small', isActive && 'active']
+    .filter(Boolean)
+    .join(' ')
   return (
-    <li className={`image ${small ? 'small' : ''}`}>
+    <li className={classNames}>
       <img alt="image" className="picture" src={url} />
       <div className="meta">
         <img alt="" className="avatar" src="#" />
