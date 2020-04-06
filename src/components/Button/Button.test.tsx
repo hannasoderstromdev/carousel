@@ -26,7 +26,7 @@ describe('Button', () => {
   it('handles onClick', async () => {
     const onClick = jest.fn()
     const { getByTestId } = render(<Button onClick={onClick} type="play" />)
-    const buttonEl = getByTestId('button')
+    const buttonEl = getByTestId('button-play')
     fireEvent.click(buttonEl)
     await expect(onClick).toHaveBeenCalledTimes(1)
   })

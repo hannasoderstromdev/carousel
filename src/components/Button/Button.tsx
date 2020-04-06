@@ -75,7 +75,7 @@ const PreviousIcon = (): JSX.Element => (
 )
 
 type IconType = {
-  type: keyof typeof ButtonType;
+  type: keyof typeof ButtonType
 }
 
 function IconType({ type }): JSX.Element {
@@ -89,13 +89,13 @@ function IconType({ type }): JSX.Element {
 }
 
 type ButtonProps = {
-  onClick?: any;
-  type: keyof typeof ButtonType;
+  onClick?: any
+  type: keyof typeof ButtonType
 }
 
 function Button({ onClick, type }: ButtonProps): JSX.Element {
   return (
-    <button className="button" data-testid="button" onClick={onClick}>
+    <button className="button" data-testid={`button-${type}`} onClick={onClick}>
       <IconType type={type} />
     </button>
   )
