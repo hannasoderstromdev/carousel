@@ -11,6 +11,7 @@ enum ButtonType {
 
 const PlayIcon = (): JSX.Element => (
   <svg
+    data-testid="play-icon"
     fill="none"
     height="42"
     viewBox="0 0 42 42"
@@ -24,6 +25,7 @@ const PlayIcon = (): JSX.Element => (
 
 const PauseIcon = (): JSX.Element => (
   <svg
+    data-testid="pause-icon"
     fill="none"
     height="42"
     viewBox="0 0 42 42"
@@ -38,6 +40,7 @@ const PauseIcon = (): JSX.Element => (
 
 const NextIcon = (): JSX.Element => (
   <svg
+    data-testid="next-icon"
     fill="none"
     height="42"
     viewBox="0 0 42 42"
@@ -52,6 +55,7 @@ const NextIcon = (): JSX.Element => (
 
 const PreviousIcon = (): JSX.Element => (
   <svg
+    data-testid="previous-icon"
     fill="none"
     height="42"
     viewBox="0 0 42 42"
@@ -71,7 +75,7 @@ const PreviousIcon = (): JSX.Element => (
 )
 
 type IconType = {
-  type: keyof typeof ButtonType
+  type: keyof typeof ButtonType;
 }
 
 function IconType({ type }): JSX.Element {
@@ -85,13 +89,13 @@ function IconType({ type }): JSX.Element {
 }
 
 type ButtonProps = {
-  onClick?: any
-  type: keyof typeof ButtonType
+  onClick?: any;
+  type: keyof typeof ButtonType;
 }
 
 function Button({ onClick, type }: ButtonProps): JSX.Element {
   return (
-    <button className="button" onClick={onClick}>
+    <button className="button" data-testid="button" onClick={onClick}>
       <IconType type={type} />
     </button>
   )
