@@ -92,7 +92,11 @@ function Carousel({
           }}
         >
           {images.map((url, index) => (
-            <Image key={index + 1} url={url} />
+            <Image
+              isActive={index === currentImageIndex}
+              key={index + 1}
+              url={url}
+            />
           ))}
         </ul>
       </div>
