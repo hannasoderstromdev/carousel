@@ -13,7 +13,7 @@ function Image({ isActive, small, url }: ImageProps): JSX.Element {
     .filter(Boolean)
     .join(' ')
   return (
-    <li className={classNames}>
+    <li className={classNames} data-testid={`image-${url}`}>
       <img alt="image" className="picture" src={url} />
       <div className="meta">
         <img alt="" className="avatar" src="#" />
