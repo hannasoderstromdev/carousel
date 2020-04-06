@@ -26,10 +26,10 @@ export function generateVisibleImages({ currentImageIndex, images }): string[] {
 }
 
 type CarouselProps = {
-  autoPlayOn?: boolean
-  autoPlaySpeedInMs?: number
-  images: string[]
-  speedInMs?: number
+  autoPlayOn?: boolean;
+  autoPlaySpeedInMs?: number;
+  images: string[];
+  speedInMs?: number;
 }
 
 function Carousel({
@@ -101,10 +101,12 @@ function Carousel({
         </ul>
       </div>
       <div className="navigation">
-        <Button onClick={toggleAutoPlay} type={autoPlay ? 'pause' : 'play'} />
-        <Button onClick={previous} type="left" />
         <Dots currentImageIndex={currentImageIndex} images={images} />
-        <Button onClick={next} type="right" />
+        <div className="navigation-buttons">
+          <Button onClick={previous} type="left" />
+          <Button onClick={toggleAutoPlay} type={autoPlay ? 'pause' : 'play'} />
+          <Button onClick={next} type="right" />
+        </div>
       </div>
     </div>
   )
