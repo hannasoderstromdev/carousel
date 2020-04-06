@@ -3,9 +3,9 @@ import React from 'react'
 import './image.css'
 
 type ImageProps = {
-  isActive: boolean
-  small?: boolean
-  url: string
+  isActive: boolean;
+  small?: boolean;
+  url: string;
 }
 
 function Image({ isActive, small, url }: ImageProps): JSX.Element {
@@ -14,7 +14,7 @@ function Image({ isActive, small, url }: ImageProps): JSX.Element {
     .join(' ')
   return (
     <li className={classNames} data-testid={`image-${url}`}>
-      <img alt="image" className="picture" src={url} />
+      <img alt="image" className="picture" data-testid="image" src={url} />
       <div className="meta">
         <img alt="" className="avatar" src="#" />
         <div className="text">
