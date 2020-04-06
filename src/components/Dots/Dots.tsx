@@ -3,12 +3,13 @@ import React from 'react'
 import './dots.css'
 
 type DotProps = {
-  active?: boolean
+  active?: boolean;
 }
 
 function Dot({ active }: DotProps): JSX.Element {
   return (
     <span
+      data-testid="dot"
       style={{
         padding: '10px',
         marginRight: '5px',
@@ -21,8 +22,8 @@ function Dot({ active }: DotProps): JSX.Element {
 }
 
 type DotsProps = {
-  images: string[]
-  currentImageIndex: number
+  images: string[];
+  currentImageIndex: number;
 }
 
 function Dots({ images, currentImageIndex }: DotsProps): JSX.Element {
